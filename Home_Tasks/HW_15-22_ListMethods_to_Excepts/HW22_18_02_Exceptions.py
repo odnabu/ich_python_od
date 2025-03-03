@@ -170,7 +170,6 @@ def validate_file_name(file_name):
 
 # -2- Функция считывания данных из файла (преобразование строковых данных в числа), и возвращение их списком:
 def get_numbers(file_name):
-    file_name = open(file_name, 'r')
     lines = [line.rstrip() for line in file_name]
     output_list = []
     for item in lines:
@@ -225,15 +224,15 @@ def math_operations(pair):                      # 1-st Variant - Для ручн
 
 # # file_path = r'C:\Users\odnab\PycharmProjects\PythonProject\Lessons\data_22_t1.txt'  # Абсолютный путь к файлу data_22_t1.txt.
 
-file = None         # None - для случаев, когда файл еще не существует, например, еще не создан лог-фал.
-                    # В случае, если не указать file = None, ошибка НЕ словится - программа ПРЕРВЕТСЯ и следующая программа НЕ запустится!
-                    # Также можно открывать файл с _with open_ - так ошибка в случае несуществующего файла не возникнет!
-                    # Video 47 from 26.02.25, 51:00.
+file = None     # None - для случаев, когда файл еще не существует, например, еще не создан лог-фал.
+                # В случае, если не указать file = None, ошибка НЕ словится - программа ПРЕРВЕТСЯ и следующая программа НЕ запустится!
+                # Также можно открывать файл с _with open_ - так ошибка в случае несуществующего файла не возникнет!
+                # Video 47 from 26.02.25, 51:00.
 try:
     file_name = validate_file_name('data_22_t2.txt')
     if file_name:
-        numbers = get_numbers(file_name)
-    file = open(file_name, 'r')
+        file = open(file_name, 'r')
+        numbers = get_numbers(file)
     print(f"Числа из файла {file_name} и соответствующие им индексы: ")
     indexing_numbers(numbers)
     pair_numb = select_numbers()                                    # for __ 1-st Variant

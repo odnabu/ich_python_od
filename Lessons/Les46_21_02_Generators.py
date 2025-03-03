@@ -140,7 +140,8 @@ print('.' * 145)
 #   ● next — метод, который также возвращает следующее значение, но не принимает никаких аргументов.
 
 # __ 1-st Example __
-# -- see this example in "Python Tutor: Visualize Code": https://pythontutor.com/render.html#code=def%20my_generator%28%29%3A%0A%20%20%20%20received_value%20%3D%20yield%201%0A%20%20%20%20yield%20received_value%20%2B%201%0Agen%20%3D%20my_generator%28%29%0Aprint%28gen.__next__%28%29%29%0Aprint%28gen.send%2810%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
+# -- see this example in "Python Tutor: Visualize Code":
+# https://pythontutor.com/render.html#code=def%20my_generator%28%29%3A%0A%20%20%20%20received_value%20%3D%20yield%201%0A%20%20%20%20yield%20received_value%20%2B%201%0Agen%20%3D%20my_generator%28%29%0Aprint%28gen.__next__%28%29%29%0Aprint%28gen.send%2810%29%29&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false
 # def my_generator():
 #     received_value = yield 1
 #     yield received_value + 1

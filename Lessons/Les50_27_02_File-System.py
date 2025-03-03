@@ -1,6 +1,6 @@
- # Tatiana Kletsovka
- # \033[0;__;__m \033[m   or   \033[1;__;__m \033[m
- # print('#' * 115)      # Для разделения блоков на листе с кодом:
+# Tatiana Kletsovka
+# \033[0;__;__m \033[m   or   \033[1;__;__m \033[m
+# print('#' * 115)      # Для разделения блоков на листе с кодом:
 """ ################################################################################################################ 
  27.02.25
  Python 50: File System - Работа с файловой системой.
@@ -16,6 +16,7 @@
 # Ctrl+Y - Удаление всей строки. Кстати, команда копирования Ctrl+C без выделения также работает для всей строки.
 # Alt+Enter - Привести код к принятым стандартам (для Python - PEP8).
 # Ctrl+R — Изменить название класса/функции и т. п. по всему проекту.
+# Shift + F6 - заменить имя элемента во всех частях во всех файлах.
 # -----------------------------------------------------------
 
 print('.' * 120)
@@ -40,7 +41,6 @@ print('.' * 120)
 
 """ ___ sys.argv ___ """
 # — это атрибут модуля, кот/обработать аргументы командной строки и использовать их в программе.
-
 
 # +++++++++++++++++
 # import sys          # __ NB! __ подгружаем модуль sys.    -->   Video 50, 21:00
@@ -114,7 +114,7 @@ print('.' * 120)
 
 """ __________ Модуль os и его подмодуль - метод os.path __________ """
 
- """ ______ os ______ """
+""" ______ os ______ """
  # — это модуль, который предоставляет функции для работы с операционной системой, включая файловую систему.
  #   - os.chdir() - Позволяет изменить текущее местоположение (перейти в...) рабочий каталог.
  #   - os.getcwd() - Возвращает текущий рабочий каталог.
@@ -125,17 +125,26 @@ print('.' * 120)
 
 # __ NB! __ Video 50, 1:10:00
 # +++++++++++++++++
-import os
+# import os
 # +++++++++++++++++
 # # os.chdir('/path/to/directory')
-current_dir = os.getcwd()
-print(f'current_dir \033[32m--> {current_dir}\033[m')
+# current_dir = os.getcwd()
+# print(f'current_dir \033[32m--> {current_dir}\033[m')
 # files = os.listdir(current_dir)
 # os.mkdir('new_directory')
 # os.makedirs('new_directory/sub_directory')
 # for dirpath, dirnames, filenames in os.walk(current_dir):         # Пройтись по директориям рекурсивно. Video 50, 1:18:00
 #     for filename in filenames:
 #         print(os.path.join(dirpath, filename))
+
+# Video 51, 20:00:
+# for dirpath, dirnames, filenames in os.walk("."):
+#     for filename in filenames:
+#         print(os.path.join(dirpath, "new", filename))
+#     for dirname in dirnames:
+#         print(os.path.join(dirpath, "new", dirname))
+#
+# print()
 
 """ ______ os.path ______ """
 # see https://lms.itcareerhub.de/pluginfile.php/7880/mod_resource/content/1/Python_26_M.pptx.pdf , Slide 36.
@@ -147,15 +156,60 @@ print(f'current_dir \033[32m--> {current_dir}\033[m')
 #   - os.path.isdir() - Проверяет, является ли путь каталогом.
 #   - os.path.isfile() - Проверяет, является ли путь файлом.
 
+# # +++++++++++++++++
+# import os
+# # +++++++++++++++++
+# path = os.path.join('/path/to', 'products.txt')
+# print(f'{path} \033[32m--> .path.join\033[m')
+# absolute_path_correct = os.path.abspath(os.getcwd())
+# print(f'{absolute_path_correct} \033[32m--> .path.abspath(os.getcwd()\033[m')
+# absolute_path = os.path.abspath(path)
+# print(absolute_path)
+# exists = os.path.exists(absolute_path_correct)
+# print(exists)
+# exists = os.path.exists(absolute_path)
+# print(exists)
+# is_directory = os.path.isdir(absolute_path_correct)
+# is_file = os.path.isfile(absolute_path_correct)
+# print(is_file)
+# print(is_directory)
+
+# # +++++++++++++++++
+# import os
+# # +++++++++++++++++path1 = "folder1"
+# path1 = "folder1"
+# path2 = "folder2"
+# path3 = "products.txt"
+# result1 = os.path.join(path1, path2, path3)
+# result2 = "/".join([path1, path2, path3])
+# print(result1, result2, sep='\n')
+
+# print(type(os.path.join))           # <class 'function'>
+
+""" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%____________   Рекурсивные функции   ___________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
+
+# — функции, которые позволяют обрабатывать все файлы и папки внутри заданного каталога, включая вложенные каталоги.
+#     ● Рекурсивные функции для выполнения операций, которые требуют обхода всей структуры каталогов, например,
+#       для поиска файлов определенного типа или копирования файлов в другое место.
+#     ● Рекурсивные функции можно реализовать с использованием циклов или рекурсии, вызывая себя для
+#       каждого вложенного каталога.
 
 # +++++++++++++++++
 # import os
 # +++++++++++++++++
-# path = os.path.join('/path/to', 'file.txt')
-# absolute_path = os.path.abspath(path)
-# exists = os.path.exists(absolute_path)
-# is_directory = os.path.isdir(absolute_path)
-# is_file = os.path.isfile(absolute_path)
+# def process_directory(directory):
+#     for filename in os.listdir(directory):
+#         file_path = os.path.join(directory, filename)
+#         if os.path.isfile(file_path):
+#             # Обработка файла:
+#             print(file_path)
+#         elif os.path.isdir(file_path):
+#             # Рекурсивный вызов для вложенного каталога:
+#             process_directory(file_path)
+#
+# start_directory = '/path/to/start_directory'
+# process_directory(start_directory)
+
 
 
 
