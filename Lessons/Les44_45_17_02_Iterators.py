@@ -105,9 +105,9 @@ print('.' * 145)
 # __ NB! __ Объект типа итератор занимает меньше места, чем список.
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # import sys
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # __ Расчет объема памяти:
 # numbers = iter(range(1, 1000001))
 # print(sys.getsizeof(numbers))
@@ -285,7 +285,7 @@ print('.' * 145)
 # print(next(my_gen))                     # -1 - получаем очередной элемент генератора
 
 # Генератор словаря (dictionary comprehension), по сути - переворачивание словаря:
-import sys                                              # __ NB! __ - подключение пакета sys
+import sys                                                # __ NB! __ - подключение пакета sys
 # dict_abc = {'a': 1, 'b': 2, 'c': 3, 'd': 3}             # __ NB! __ it not depends on from the number of elements: , 'e': 4, 'f': 5, 'g': 6
 # dict_gen_abc = {k: v for k, v in dict_abc.items()}
 # dict_123 = {v: k for k, v in dict_abc.items()}        # Reversed dictionary.
@@ -340,9 +340,9 @@ import sys                                              # __ NB! __ - подкл
 # ___ Islice ___
 # — функция, которая позволяет создавать итераторы, представляющие собой срезы исходного итерируемого объекта.
 
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # import itertools
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 
 # my_list = [1, 2, 3, 4, 5]
 # my_iterator = itertools.islice(my_list, 1, 4)
@@ -350,9 +350,9 @@ import sys                                              # __ NB! __ - подкл
 #     print(item) # Выводит 2, 3, 4
 
 # Какой будет результат выполнения кода (догадайтесь, что делает незнакомая функция, по ее названию):
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # import itertools
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # colors = ['red', 'green', 'blue']
 # sizes = ['S', 'M', 'L']
 # # for color, size in itertools.product(colors, sizes):          # Выведет 9 пар, тк перемножение.
@@ -361,9 +361,9 @@ import sys                                              # __ NB! __ - подкл
 #     print(color, size)
 
 # Какой будет результат выполнения кода (догадайтесь, что делает незнакомая функция, по ее названию):
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # import itertools
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # list1 = [1, 2, 3]
 # list2 = ['a', 'b', 'c']
 # for item in itertools.chain(list1, list2):
@@ -431,10 +431,10 @@ import sys                                              # __ NB! __ - подкл
 #     "PT": 25, # Португалия (Portugal)
 # }
 #
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 # import json
 # from datetime import datetime
-# iiiiiiiiiiiiiiiiiiiiiiiiiii
+# +++++++++++++++++++++++++++++++
 #
 #
 # def validate_customers(customers):

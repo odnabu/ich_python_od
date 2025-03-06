@@ -23,7 +23,7 @@
 # Alt+Enter - Привести код к принятым стандартам (для Python - PEP8).
 # Ctrl+R — Изменить название класса/функции и т. п. по всему проекту.
 # -----------------------------------------------------------
-print('.' * 140)
+print('.' * 130)
 
 
 part_1 = '______ Task 1 _____'
@@ -43,8 +43,10 @@ def generate_squares(numb):
     # return squared_numb
     yield from (numb ** 2 for numb in range(1, numb + 1))
 
-for item in generate_squares(5):
-    print(item)
+n = 5
+for item in generate_squares(n):
+    # print(f'\t{item}')
+    print(f'\tSquared element - {item}')
 
 
 part_2 = '______ Task 2 _____'

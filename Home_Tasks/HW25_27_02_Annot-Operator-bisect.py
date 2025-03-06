@@ -81,48 +81,48 @@ print(f'The total price is \033[35m{result:.2f}\033[m.')
 # # ___ 2-nd Variant: step by step with Technical specifications. ___
 
 # # -1- Функция проверки существования файла:
-def validate_file_name(file_name: str) -> str:
-    if not os.path.exists(file_name):
-        raise FileNotFoundError("Невозможно открыть файл")
-    else:
-        return file_name
-
-# -2- Функция считывания данных из файла (преобразование строковых данных в числа), и возвращение их списком:
-from typing import Generator, List, Tuple
-
-# Генератор чтения данных из файла:
-def get_data_list(file) -> Generator[Tuple[str, float, int], None, None]:
-    for line in file:
-        name, price, amount = line.strip().split(', ')
-        yield name, float(price), int(amount)           # Построчно отдает данные.
-
-# Генератор подсчета общей стоимости:
-def calculate_total_price(products: List[Tuple[str, float, int]]) -> Generator[float, None, None]:
-    for name, price, amount in products:
-        yield price * amount
-        # print(total_price)
-
-
-file = None
-try:
-    f_name = validate_file_name("products.txt")
-    if f_name:
-        file = open(f_name, 'r')
-        products_list = list(get_data_list(file))           #
-        for index, product in enumerate(products_list, start = 1):
-            print(f'{index:>3}. {product[0]}')
-        total_price = sum(calculate_total_price(products_list))
-        print(f'{'-' * 30}\nThe total price is \033[35m{total_price:>7.2f}\033[m')
-except FileNotFoundError as e_fnf:
-    notice_fnf = f"\033[31m{e_fnf}\033[m"
-    print(f"{notice_fnf}: возможно ошибка в имени или адресе файла.")
-except ValueError as e_v:
-    notice_v = f"\033[31m{e_v}\033[m"
-    print(f"Ошибка в файле, возможно неверный формат данных: {notice_v}")
-finally:
-    if file:
-        file.close()
-    print('Файл закрыт.')
+# def validate_file_name(file_name: str) -> str:
+#     if not os.path.exists(file_name):
+#         raise FileNotFoundError("Невозможно открыть файл")
+#     else:
+#         return file_name
+#
+# # -2- Функция считывания данных из файла (преобразование строковых данных в числа), и возвращение их списком:
+# from typing import Generator, List, Tuple
+#
+# # Генератор чтения данных из файла:
+# def get_data_list(file) -> Generator[Tuple[str, float, int], None, None]:
+#     for line in file:
+#         name, price, amount = line.strip().split(', ')
+#         yield name, float(price), int(amount)           # Построчно отдает данные.
+#
+# # Генератор подсчета общей стоимости:
+# def calculate_total_price(products: List[Tuple[str, float, int]]) -> Generator[float, None, None]:
+#     for name, price, amount in products:
+#         yield price * amount
+#         # print(total_price)
+#
+#
+# file = None
+# try:
+#     f_name = validate_file_name("products.txt")
+#     if f_name:
+#         file = open(f_name, 'r')
+#         products_list = list(get_data_list(file))           #
+#         for index, product in enumerate(products_list, start = 1):
+#             print(f'{index:>3}. {product[0]}')
+#         total_price = sum(calculate_total_price(products_list))
+#         print(f'{'-' * 30}\nThe total price is \033[35m{total_price:>7.2f}\033[m')
+# except FileNotFoundError as e_fnf:
+#     notice_fnf = f"\033[31m{e_fnf}\033[m"
+#     print(f"{notice_fnf}: возможно ошибка в имени или адресе файла.")
+# except ValueError as e_v:
+#     notice_v = f"\033[31m{e_v}\033[m"
+#     print(f"Ошибка в файле, возможно неверный формат данных: {notice_v}")
+# finally:
+#     if file:
+#         file.close()
+#     print('Файл закрыт.')
 
 
 """ __ NB! ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
