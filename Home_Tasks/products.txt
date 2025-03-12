@@ -1,0 +1,11 @@
+Apple, 1.50, 10
+Banana, 0.75, 15
+Cucumber, 0.99, 1
+Bread, 1.59, 1
+Cheese, 1.99, 1
+Salad, 0.99, 1
+Sardines, 0.99, 3
+Sausages, 1.79, 2
+Mayonnaise, 1.49, 1
+Eggs, 0.239, 6
+Icecream, 2.99, 1
