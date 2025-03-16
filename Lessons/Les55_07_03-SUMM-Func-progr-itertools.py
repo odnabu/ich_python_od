@@ -36,12 +36,12 @@ print('.' * 120)
 # os.chdir(args[1])
 # cur_dir = os.getcwd()
 #
-# if os.path.exists(cur_dir ):
-#     if os.path.isdir(cur_dir ):
+# if os.path.exists(cur_dir):
+#     if os.path.isdir(cur_dir):
 #         for root, dirs, files in os.walk(cur_dir):
 #             for dir_ in dirs :
 #                 print("------------------------ Current", root, dir_, "---------------------", sep="---")
-#                 print(os.path.join(root,dir_))
+#                 print(os.path.join(root, dir_))
 #             for file in files :
 #                 print(os.path.join(root, file))
 #     else :

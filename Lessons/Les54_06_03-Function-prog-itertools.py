@@ -5,11 +5,12 @@
  06.03.25
  Python 54: Функциональное программирование на Python. Модуль itertools.
  ################################################################################################################### """
+import math
 
 # Video Lesson 54: ---------------.
 # Video Practice __: wasn't.
 # links:
-#   - .
+#   - "C:\Users\odnab\OneDrive\Mine\_Python_Dev_KI_ICH\- Python -\Theory\Python_LfS28.docx-Func-programm-itertools.pdf".
 #   - .
 
 # def input_numb_list():
@@ -140,19 +141,29 @@ print('.' * 120)
 #   - Модуль operator - Предоставляет функции для использования в reduce и accumulate.
 
 """ ______ Модуль itertools.accumulate ______ """
-# import itertools
-# import operator
-# from functools import reduce
-#
-# numbers = [1, 2, 3, 4, 5]
-#
-# result2 = reduce(operator.mul, numbers)
-# print(result2)
-#
-# result = itertools.accumulate(numbers, operator.mul, initial=1)
-# # result = itertools.accumulate(numbers, operator.mul)
-# print(result)
-# print(list(result))
+
+# ++++++++++++++++++++++++++++++++
+import itertools
+import operator
+from functools import reduce
+# ++++++++++++++++++++++++++++++++
+
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+numbers = [1, 2, 3, 4, 5]
+
+result_0 = math.prod(numbers)
+# print(f'math.prod --> {result_0}')
+
+result_1 = reduce(operator.mul, numbers)
+# print(f'reduce() --> {result_1}')
+result_1_let = reduce(lambda x, y: x + y, letters)
+# print(f'reduce(letters) --> {result_1_let}')
+
+result_2 = itertools.accumulate(numbers, operator.mul, initial=1)
+# print(f'itertools.accumulate(..., \033[31minit=1\033[m) --> {list(result_2)}')
+result_3 = itertools.accumulate(numbers, operator.mul)
+# print(f'Only Info about iterator --> {result_3}')
+# print(f'Result of LIST(itertools.accumulate()) --> {list(result_3)}')
 
 """ ______ Функции для работы с последовательностями ______ """
 
@@ -164,22 +175,26 @@ print('.' * 120)
 
 """ ___ Генерация комбинаторных объектов ___ """
 # ________________________________________________ CODE from Taniya
+
+# ++++++++++++++++++++++
 # import itertools
-# letters = ['a', 'b', 'c']
-# numbers = [1, 2, 3]
-#
-# combinations = list(itertools.combinations(letters, 2))
-# print(combinations)
-# combinations = list(itertools.combinations(letters, 3))
-# print(combinations, "\n")
-#
-# permutations = list(itertools.permutations(numbers))
-# print(permutations)
-# permutations = list(itertools.permutations(numbers, 2))
-# print(permutations, "\n")
-#
-# product = list(itertools.product(letters, numbers))
-# print(product)
+# ++++++++++++++++++++++
+
+letters = ['a', 'b', 'c']
+numbers = [1, 2, 3]
+# ___ Комбинации ___
+combinations = list(itertools.combinations(letters, 2))     # Комбинации из 2-х элементов (пар).
+# print(f'Combinations of 2 elements:  {combinations}')
+combinations = list(itertools.combinations(letters, 3))     # Комбинации из 3-х элементов (тройки).
+# print(f'Combinations of 3 elements:  {combinations}', "\n")
+# ___ Перестановки ___
+permutations = list(itertools.permutations(numbers))
+# print(f'Permutations:  {permutations} \nNumber of permutations = {len(permutations)}.')
+permutations_2 = list(itertools.permutations(numbers, 2))
+# print(f'Permutations of 2 elements:  {permutations_2} \nNumber of permutations of 2 = {len(permutations_2)}.', "\n")
+# ___ Декартово произведение ___
+product = list(itertools.product(letters, numbers))
+# print(f'"Product" makes all possible combinations:  {product}')
 # ________________________________________________ _________________
 
 
@@ -188,12 +203,16 @@ print('.' * 120)
 # даже если они имеют разную длину, что полезно, когда требуется обработать данные, учитывая разные длины
 # или пропуски в последовательностях.
 
+# ++++++++++++++++++
 import itertools
+# ++++++++++++++++++
+
 letters = ['a', 'b', 'c']
 numbers = [1, 2]
-# zipped = itertools.zip_longest(letters, numbers, fillvalue='-')
-zipped = itertools.zip_longest(letters, numbers, [0])
-print(list(zipped))
+zipped_fillvalue = itertools.zip_longest(letters, numbers, fillvalue='-')       # Заполнитель недостающего элемента.
+print(f'With fillvalue:  {list(zipped_fillvalue)}')
+zipped_0 = itertools.zip_longest(letters, numbers, [0])                         # Что добавить - список, состоящий из ноля.
+print(f'{list(zipped_0)}')
 
 """ ___ Метод itertools.zip_longest ___ """
 

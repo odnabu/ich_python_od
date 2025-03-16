@@ -272,7 +272,7 @@ from functools import reduce
 
 # print(args.input_file)
 # print(args.output_directory)
-""" __ NB! __ """   #   -->   В консоли ввожу команду:
+""" __ NB! __   В консоли ввожу команду    |-->    """
 # #        python Lessons/Les52-53_03_03-Function-programming.py --output_directory Lessons/report --input_file Lessons/sales_data.txt
 # #     --> Или с флагами:
 # #        python Lessons/Les52-53_03_03-Function-programming.py -od Lessons/report -if Lessons/sales_data.txt

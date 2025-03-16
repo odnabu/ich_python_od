@@ -225,8 +225,9 @@ print('.' * 120)
 import os
 # +++++++++++++++
 
-# Укажите имя файла, который нужно найти:
+# Имя файла, который нужно найти:
 file_name = "products.txt"
+# file_name = "example_Shakespeare.txt"
 
 # ___   -1- Поиск файла:   ___
 # Используется os.walk, чтобы рекурсивно обходить текущую директорию и её поддиректории. По умолчанию "." -
@@ -235,15 +236,17 @@ file_name = "products.txt"
 # Если файл с именем file_name найден, его абсолютный путь возвращается с помощью os.path.join.
 
 # Функция поиска файла:
-def find_file(file_name, search_directory=".."):
+def find_file(file_name, search_directory):
     for root, dirs, files in os.walk(search_directory):
         if file_name in files:
-            # Возвращаем абсолютный путь к файлу:
+            # Возвращаю абсолютный путь к файлу:
             return os.path.join(root, file_name)
     return None
 
-# Поиск файла в текущей директории и поддиректориях:
-file_path = find_file(file_name)
+# Поиск файла в директории на уровень выше (".."), т.е. в папке с проектом PythonProject и поддиректориях:
+# directory_path = r'C:\Users\odnab\PycharmProjects\PythonProject'
+directory_path = '..'
+file_path = find_file(file_name, directory_path)
 
 # ___   -2- Замена слешей:  +++   -3- Открытие файла:   ___
 # - Метод replace("\\", "/") заменяет все бэкслеши на обычные слеши для работы в ОС Windows.
@@ -251,20 +254,19 @@ file_path = find_file(file_name)
 #   В случае ошибки (например, отсутствия прав) генерируется исключение, и выводится соответствующее сообщение.
 
 if file_path:
-    # Преобразуем путь: заменяем бэкслеши (\) на слеши (/):
-    file_path = file_path.replace("\\", "/")
-    print(f"Файл найден: {file_path}")
-
-    # Открываем файл для чтения:
+    # # Преобразуем путь: заменяем бэкслеши (\) на слеши (/):
+    # file_path = file_path.replace("\\", "/")
+    print(f"\033[33mФайл найден, адрес:\033[m  {file_path}")
+    # Открываю файл для чтения:
     try:
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
             print("Содержимое файла:")
-            print(content)
+            # print(content)
     except Exception as e:
         print(f"Ошибка при открытии файла: {e}")
 else:
-    print(f"Файл '{file_name}' не найден.")
+    print(f"Файл \033[34m'{file_name}'\033[m \033[31mне найден\033[m.")
 
 
 

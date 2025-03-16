@@ -8,32 +8,34 @@
 # на пустую строку. Выведите преобразованную строку на экран с помощью команды print.
 # __ 1-st Var __ (exactly by Home Task)
 # frase = input(f'Enter a phrase: ')             # Hello World
-# vowel = 'aeiouy'                               # 5 vowel letters + y
-# # print(frase.replace(frase[1], ''))
-# frase_new = ''
-# i = 0
-# while i < len(frase):
-#     if frase[i] not in vowel:
-#         frase_new += frase[i]
-#     else:
-#         frase_new += frase[i].replace(frase[i], '')
-#     # print(frase_new)
-#     i += 1
+frase = 'Hello World'
+vowel = 'aeiouy'                               # 5 vowel letters + y
+# print(frase.replace(frase[1], ''))
+frase_new = ''
+i = 0
+while i < len(frase):
+    if frase[i] not in vowel:
+        frase_new += frase[i]
+    else:
+        frase_new += frase[i].replace(frase[i], '')
+    # print(frase_new)
+    i += 1
 # print(f'Frase after replacing: {frase_new}.')
 
 # __ 2-nd Var __ FINAL CODE (with colors)
 # frase = input(f'Enter a phrase: ')              # Hello World
-# vowel = 'aeiouy '                               # 5 vowel letters + y + Space
-# # print(frase.replace(frase[1], ''))
-# frase_new = ''
-# i = 0
-# while i < len(frase):
-#     if frase[i] not in vowel:
-#         frase_new += f'\033[1;36;40m {frase[i]} \033[m'
-#     else:
-#         frase_new += frase[i].replace(frase[i], '\033[0;30m.\033[m')      # There is Into 1 point (dot).
-#     # print(frase_new)
-#     i += 1
+farse = 'Hello World'
+vowel = 'aeiouy '                               # 5 vowel letters + y + Space
+# print(frase.replace(frase[1], ''))
+frase_new = ''
+i = 0
+while i < len(frase):
+    if frase[i] not in vowel:
+        frase_new += f'\033[1;36;40m {frase[i]} \033[m'
+    else:
+        frase_new += frase[i].replace(frase[i], '\033[0;30m.\033[m')      # There is Into 1 point (dot).
+    # print(frase_new)
+    i += 1
 # print(f'Frase after replacing: {frase_new}.')
 
 
@@ -139,20 +141,22 @@
 # Напишите программу, которая запрашивает у пользователя строку и выравнивает ее по центру с заданной шириной.
 # Если строка не может быть выровнена по центру из-за нечетной ширины, она должна быть выровнена смещением вправо.
 # Используйте методы center() и rjust() для выравнивания строки.
-frase = input(f'Enter a phrase: ')                  # Hello World
-w = int(input('Enter a width for phrase: '))        # 16
-# print(f'Total number of simbols in phrase is: {len(frase)}.')
-# print(f'For comparison:\n.{frase.center(w, '+')}.')         # Возвращает отцентрированную строку, по краям которой стоит символ fill (пробел по умолчанию)
+# frase = input(f'Enter a phrase: ')                  # Hello World
+frase = 'Anything we practice, we become better at. Edith Eger, The Choice: Embrace the Possible'
+# w = int(input('Enter a width for phrase: '))        # 16
+w = 150
+print(f'Total number of simbols in phrase is: \033[33m{len(frase)}\033[m.')
+print(f'For comparison:\n.{frase.center(w, '+')}.')         # Возвращает отцентрированную строку, по краям которой стоит символ fill (пробел по умолчанию)
 if len(frase) % 2 != 0:
     neven_len_st = frase.rjust(len(frase) + 1, '*')
     # print(f'.\033[36m{neven_len_st.center(w, '_')}\033[m.')
     neven_len_ = frase.rjust(len(frase) + 1, ' ')
     print(f'In accordance with the technical specifications,'
-          f'\nwhen the numbers of symbols is \033[1;36mODD\033[m:\n.\033[1;36m{neven_len_.center(16)}\033[m.')
+          f'\nwhen the numbers of symbols is \033[1;36mODD\033[m:\n.\033[1;36m{neven_len_.center(w)}\033[m.')
 else:
     even_len = frase.ljust(len(frase))
     # print(f'.\033[33m{even_len.center(w, '_')}\033[m.')
     print(f'In accordance with the technical specifications,'
-          f'\nwhen the number of symbols is \033[1;33mEVEN\033[m:\n.\033[1;33m{even_len.center(16)}\033[m.')
+          f'\nwhen the number of symbols is \033[1;33mEVEN\033[m:\n.\033[1;33m{even_len.center(w)}\033[m.')
 
 
