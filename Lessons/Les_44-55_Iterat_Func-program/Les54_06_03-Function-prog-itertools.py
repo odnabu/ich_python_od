@@ -211,7 +211,7 @@ letters = ['a', 'b', 'c']
 numbers = [1, 2]
 zipped_fillvalue = itertools.zip_longest(letters, numbers, fillvalue='-')       # Заполнитель недостающего элемента.
 print(f'With fillvalue:  {list(zipped_fillvalue)}')
-zipped_0 = itertools.zip_longest(letters, numbers, [0])                         # Что добавить - список, состоящий из ноля.
+zipped_0 = itertools.zip_longest(letters, numbers, [0])                         # Что добавить - список, состоящий из нуля.
 print(f'{list(zipped_0)}')
 
 """ ___ Метод itertools.zip_longest ___ """

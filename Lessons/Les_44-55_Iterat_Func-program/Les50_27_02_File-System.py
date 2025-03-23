@@ -245,7 +245,7 @@ def find_file(file_name, search_directory):
 
 # Поиск файла в директории на уровень выше (".."), т.е. в папке с проектом PythonProject и поддиректориях:
 # directory_path = r'C:\Users\odnab\PycharmProjects\PythonProject'
-directory_path = '..'
+directory_path = '../..'
 file_path = find_file(file_name, directory_path)
 
 # ___   -2- Замена слешей:  +++   -3- Открытие файла:   ___

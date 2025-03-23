@@ -313,7 +313,7 @@ def find_word_in_files(word, directory):
         print(f"Слово \033[33m'{word}'\033[m \033[31mНЕ найдено\033[m ни в одном файле в папке {directory}.")
 
 # Пример вызова функции
-search_word = ".isalpha"  # Слово для поиска
+search_word = "execute"  # Слово для поиска
 project_directory_H = r'..\Home_Tasks'  # Путь к директории проекта
 find_word_in_files(search_word, project_directory_H)
 project_directory_L = r'..\Lessons'  # Путь к директории проекта

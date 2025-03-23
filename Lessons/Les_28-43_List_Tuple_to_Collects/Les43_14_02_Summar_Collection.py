@@ -46,7 +46,7 @@ import json
 from json import JSONDecodeError
 
 try:
-    with open('../products.json', encoding='utf-8') as file:
+    with open('../Les_44-55_Iterat_Func-program/products.json', encoding='utf-8') as file:
         data_products = json.load(file)
 except FileNotFoundError:
     print("File not exists.")
