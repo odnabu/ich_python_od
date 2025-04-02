@@ -1,0 +1,4 @@
+2025-03-27 08:46:37,038 - INFO - Arguments: 2, 3, Result: 5
+2025-03-27 08:46:37,039 - INFO - Arguments: 5, 7, Result: 12
+2025-03-27 08:48:45,900 - INFO - Arguments: 2, 3. Result: 5
+2025-03-27 08:48:45,901 - INFO - Arguments: 5, 7. Result: 12
