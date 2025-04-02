@@ -5,7 +5,6 @@
  21.03.25
  Python 59: SUMMARY - Intro OOP. Methods of Class.
  ################################################################################################################### """
-
 # Video Lesson __: wasn't.
 # Video Practice 59: -----------.
 # links:
@@ -37,10 +36,10 @@ print('.' * 120)
 # AGAIN!!! See Video 59, 35:00
 # По сути ИНКАПСУЛЯЦИЯ - ограничение доступа к полю (переменной) и методу.
 """ __ NB! __ 
-            -- PRIVATE_variable -->     СОВСЕМ ЗАКРЫТО! чисто для внутренней реализации:   self.__name = 
-            -- PRIVATE_method   -->     СОВСЕМ ЗАКРЫТО! чисто для внутренней реализации:   .__method =   
-            -- protected_variable       Просто закрыто,точнее ограничен доступ:            self._name = 
-            -- protected_method         Просто закрыто,точнее ограничен доступ:            ._method = """
+        -- PRIVATE_variable -->   СОВСЕМ ЗАКРЫТО! чисто для внутренней реализации. ВНЕ класса НЕ вызывать:   self.__name = 
+        -- PRIVATE_method   -->   СОВСЕМ ЗАКРЫТО! чисто для внутренней реализации. ВНЕ класса НЕ вызывать:   .__method =   
+        -- protected_variable     Просто закрыто, точнее ограничен доступ. ВНЕ класса НЕ вызывать:           self._name = 
+        -- protected_method       Просто закрыто, точнее ограничен доступ. ВНЕ класса НЕ вызывать:           ._method = """
 
 
 """ ______  Task 1  ______________________________________________________________________________________________ """
@@ -54,26 +53,92 @@ print('.' * 120)
 #    - `__grades` (список оценок, список чисел от 1 до 5)
 
 class Student:
-
+    # 2.1 - Конструктор `__init__(name, age)`, принимает имя и возраст, а список оценок создаёт пустым:
     def __init__(self, name, age):
         self.__name = name
         self.__age = age
         self.__grades = []
 
+    # 2.2 - getter for Name and Age:
+    def get_name(self):
+        return self.__name
+
+    def get_age(self):
+        return self.__age
+
+    # 2.3 - Сеттер для `_age`, который не позволяет установить возраст меньше 16 лет:
+    def set_age(self, age):
+        if age < 16:
+            print(ValueError('Age must be at least 16.'))
+        else:
+            self.__age = age
+
+    # 2.4 - Метод, который добавляет оценку (только если она от 1 до 5):
+    def add_grade(self, grade):
+        if grade in range(1, 6):
+            # if 1 <= grade <= 5:
+            return  self.__grades.append(grade)
+        else:
+            print(ValueError('Grade must be between 1 and 5.'))
+
+    # 2.5 - Метод, который возвращает средний балл (или `None`, если оценок нет):
     def get_average_grade(self):
         if self.__grades:
             return sum(self.__grades) / len(self.__grades)
 
-    def add_grade(self, grade):
-        if grade in range(1, 6):
-        # if 1 <= grade <= 5:
-            return  self.__grades.append(grade)
+    # Дополнительно. Реализуйте метод `__str__()`, который возвращает строку с данными студента.
+        # (See theory https://sky.pro/media/raznicza-mezhdu-__str__-i-__repr__-v-python/)
+        # при попытке преобразовать объект класса Student в строку, будет получено представление объекта student_1:
+    def __str__(self):
+        return f'Student: {self.__name}, age: {self.__age}, grades: {self.__grades}.'
+        # при вызове repr() для объекта класса Student, будет получено представление объекта в виде,
+        # который может быть использован для воссоздания объекта:
+    def __repr__(self):
+        return f"Student(name={self.__name!r}, age={self.__age!r}, grades={self.__grades!r}))"
+
+    # Ful INFO about Student:
+    def get_students_info(self):
+        return (f'\t{'Student:':<15} {self.__name}\n'
+                f'\t{'Age:':<15} {self.__age}\n'
+                f'\t{'Average grade:':<15} \033[31m{round(sum(self.__grades) / len(self.__grades), 2)}\033[m\n')
 
 
-student = Student('Bob', 18)
-print(student.get_average_grade())
-student.add_grade(-3)
-student.add_grade(4)
-student.add_grade(5)
-print(student.get_average_grade())
+student_1 = Student('Bob', 18)
+# print(student_1.get_average_grade())          # This is for understanding, why NONE appears.
+student_1.add_grade(-3)
+student_1.add_grade(4)
+student_1.add_grade(1)
+student_1.add_grade(5)
 
+student_2 = Student('Diane', 16)
+student_2.add_grade(3)
+student_2.add_grade(5)
+student_2.add_grade(3)
+
+print(f'{'__ 2.5 get_av_grade __':_<80}', end='\n')
+print(student_1.get_average_grade())
+
+print(f'{'__ 2.2 get name & age __':_<80}', end='\n')
+print(student_1.get_name())
+print(student_1.get_age())
+
+print(f'{'__ 2.3 not set age < 16 __':_<80}', end='\n')
+student_1.set_age(15)
+
+# Дополнительно. Реализуйте метод `__str__()`
+print(f'\n{'__ Дополнительно методы __str__(),  __repr__  __':_<80}', end='\n')
+print(student_1)
+print(repr(student_1))
+print(f'{'___   __str__   ':_<80}\n',
+      student_1.__str__())
+print(f'{'___  __repr__   ':_<80}\n',
+      student_1.__repr__())
+
+# Ful INFO about Student:
+print(f'\n{'__ Full student\'s info: __':_<80}', end='\n')
+print(student_1.get_students_info())
+print(student_2.get_students_info())
+
+# print(dir(student_1))
+
+# ВОПРОС: имеет ли смысл делать в классе обработку ошибок?
