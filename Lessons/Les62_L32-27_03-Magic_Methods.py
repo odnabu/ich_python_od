@@ -67,69 +67,66 @@ print('.' * 120)
 
 # See Video 62, _______
 
-# +++++++++++++++++++++++++++++++++++++++
-from functools import total_ordering
-# import functools
-# +++++++++++++++++++++++++++++++++++++++
-
-@total_ordering
-# @functools.total_ordering
-class Product:
-    def __init__(self, name, price):
-        self.name = name
-        self.price = price
-
-    def __eq__(self, other):
-        return self.price == other.price        # and self.name.lower() == other.name.lower()
-
-    # def __ne__(self, other):
-    #     return self.price != other.price
-
-    # def __lt__(self, other):
-    #     return self.price < other.price
-
-    def __gt__(self, other):
-        return self.price > other.price
-
-    # def __le__(self, other):
-    #     return self.price <= other.price
-
-    # def __ge__(self, other):
-    #     return self.price >= other.price
-
-    def __bool__(self):
-        return bool(self.price)
-
-    def __hash__(self):
-        return hash((self.name, self.price))  # Используем кортеж
-
-p1 = Product("Apple", 2)
-p2 = Product("Banana", 0)
-p3 = Product("Melon", 3)
-print(f'{p1.name} - {p1.price}\n'
-      f'{p2.name} - {p2.price}\n'
-      f'{'-' * 30}')
-
-print(f'{'p1 < p2':<10}', p1 < p2)
-print(f'{'p1 <= p2':<10}', p1 <= p2)
-print(f'{'p1 > p2':<10}', p1 > p2)
-print(f'{'p1 >= p2':<10}', p1 >= p2)
-print(f'{'p1 == p2':<10}', p1 == p2)
-print(f'{'p1 != p2':<10}', p1 != p2)
-print()
-print(f'{'bool(p1)':<10}', bool(p1))
-print(f'{'bool(p2)':<10}', bool(p2))
-
-# Если в классе определен __eq__, а __hash__ не переопределен, то Python автоматически делает __hash__ = None.
-s = {p1, p2}
-print(s)
-
-
-l = [1, 2, 3]
-print(len(l))
-print(l.__len__())
-
-
+# # +++++++++++++++++++++++++++++++++++++++
+# from functools import total_ordering
+# # import functools
+# # +++++++++++++++++++++++++++++++++++++++
+#
+# @total_ordering
+# # @functools.total_ordering
+# class Product:
+#     def __init__(self, name, price):
+#         self.name = name
+#         self.price = price
+#
+#     def __eq__(self, other):
+#         return self.price == other.price        # and self.name.lower() == other.name.lower()
+#
+#     # def __ne__(self, other):
+#     #     return self.price != other.price
+#
+#     # def __lt__(self, other):
+#     #     return self.price < other.price
+#
+#     def __gt__(self, other):
+#         return self.price > other.price
+#
+#     # def __le__(self, other):
+#     #     return self.price <= other.price
+#
+#     # def __ge__(self, other):
+#     #     return self.price >= other.price
+#
+#     def __bool__(self):
+#         return bool(self.price)
+#
+#     def __hash__(self):
+#         return hash((self.name, self.price))  # Используем кортеж
+#
+# p1 = Product("Apple", 2)
+# p2 = Product("Banana", 0)
+# p3 = Product("Melon", 3)
+# print(f'{p1.name} - {p1.price}\n'
+#       f'{p2.name} - {p2.price}\n'
+#       f'{'-' * 30}')
+#
+# print(f'{'p1 < p2':<10}', p1 < p2)
+# print(f'{'p1 <= p2':<10}', p1 <= p2)
+# print(f'{'p1 > p2':<10}', p1 > p2)
+# print(f'{'p1 >= p2':<10}', p1 >= p2)
+# print(f'{'p1 == p2':<10}', p1 == p2)
+# print(f'{'p1 != p2':<10}', p1 != p2)
+# print()
+# print(f'{'bool(p1)':<10}', bool(p1))
+# print(f'{'bool(p2)':<10}', bool(p2))
+#
+# # Если в классе определен __eq__, а __hash__ не переопределен, то Python автоматически делает __hash__ = None.
+# s = {p1, p2}
+# print(s)
+#
+# l = [1, 2, 3]
+# print(len(l))
+# print(l.__len__())
 
 
 """ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%__________   Использование методов   _________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
@@ -148,16 +145,16 @@ print(l.__len__())
 #   ///   See Example Video 62, 1:02:00    ///
 # class MyList:
 #     def __init__(self, data):
-#         self.data = data  # Внутренний список
+#         self.data = data                      # Внутренний список
 #
 #     def __getitem__(self, index):
 #         print(f"Получаем элемент {index}")
-#         return self.data[index]  # Просто берем из списка
+#         return self.data[index]               # Просто берем из списка
 #
 #     def __setitem__(self, index, value):
 #         if value >= 0:
 #             print(f"Устанавливаем {value} в позицию {index}")
-#             self.data[index] = value  # Изменяем список
+#             self.data[index] = value           # Изменяем список
 #         else:
 #             print("Значение не может быть отрицательным")
 #
@@ -232,7 +229,7 @@ print(l.__len__())
 #     def __iter__(self):
 #         return self
 #
-#     def +_next__(self):
+#     def __next__(self):
 #         # Логика получения следующего элемента.
 #         # Если достигнут конец итерации, вызывается исключение StopIteration
 #         raise StopIteration

@@ -34,14 +34,19 @@
 # Person.printAge()
 
 
-class Shape:
-    name = "shape"
 
-    def area(self):
-        print("Method 'area' must be implemented")
-        # raise NotImplementedError("Method 'area' must be implemented")
+""" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%______________     Полиморфизм и     _____________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                       наследование                                                """
+# Video 64, 53:00
 
-
+""" __________ Полиморфизм __________ """
+# class Shape:
+#     name = "shape"
+#
+#     def area(self):
+#         print("Method 'area' must be implemented")
+#         # raise NotImplementedError("Method 'area' must be implemented")
+#
 #
 # class Rectangle(Shape):
 #     name = "rect"
@@ -69,6 +74,9 @@ class Shape:
 #     print(shape.area())
 #     print(shape.name)
 
+
+
+""" __________ Наследование __________ """
 #
 # class A:
 #     pass
@@ -97,6 +105,7 @@ class Shape:
 # print(D.__mro__)
 
 
+""" ___ Создание пользовательских исключений ___ """
 #
 # class CustomException(Exception):
 #     pass
@@ -107,6 +116,9 @@ class Shape:
 # except CustomException as e:
 #     print(e)  # This is a custom exception
 
+
+
+""" __________ Вызов конструктора текущего класса __________ """
 #
 # class MyBaseClass:
 #     def __init__(self, x):
@@ -124,6 +136,7 @@ class Shape:
 # print(obj.y)  # 2
 
 
+# Объясните, что происходит в этом фрагменте кода и какой будет вывод:
 # class Animal:
 #     def __init__(self, name):
 #         self.name = name
@@ -150,41 +163,43 @@ class Shape:
 
 
 
-from abc import ABC, abstractmethod
+""" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%____________   Абстрактные классы   ___________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
 
-# class BaseShape:
-class BaseShape(ABC):
-    @abstractmethod
-    def area(self):
-        pass
-
-    def area2(self):
-        pass
-
-class Circle(BaseShape):
-    def __init__(self, radius):
-        self.radius = radius
-        print("Inside Circle __init__")
-
-    def area(self):
-        return 3.14 * self.radius ** 2
-
-class Rectangle(BaseShape):
-    def __init__(self, length, width):
-        self.length = length
-        self.width = width
-
-    def area(self):
-        return self.length * self.width
-
-# circle = Circle(5)
-# rectangle = Rectangle(4, 6)
+# from abc import ABC, abstractmethod
 #
-# print(circle.area())
-# print(rectangle.area())
-
-
-# print(BaseShape())
-print(Circle(5))
-print(Rectangle(3, 4))
+# # class BaseShape:
+# class BaseShape(ABC):
+#     @abstractmethod
+#     def area(self):
+#         pass
+#
+#     def area2(self):
+#         pass
+#
+# class Circle(BaseShape):
+#     def __init__(self, radius):
+#         self.radius = radius
+#         print("Inside Circle __init__")
+#
+#     def area(self):
+#         return 3.14 * self.radius ** 2
+#
+# class Rectangle(BaseShape):
+#     def __init__(self, length, width):
+#         self.length = length
+#         self.width = width
+#
+#     def area(self):
+#         return self.length * self.width
+#
+# # circle = Circle(5)
+# # rectangle = Rectangle(4, 6)
+# #
+# # print(circle.area())
+# # print(rectangle.area())
+#
+#
+# # print(BaseShape())
+# print(Circle(5))
+# print(Rectangle(3, 4))
 
