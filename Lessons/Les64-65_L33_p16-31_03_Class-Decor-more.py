@@ -36,38 +36,55 @@ print('.' * 120)
 #
 
 """ __________ Методы класса __________ """
-#       ● Определяются с помощью декоратора @classmethod.
+#       ● Определяются с помощью декоратора @classmethod. - see detailed in https://docs-python.ru/tutorial/vstroennye-funktsii-interpretatora-python/dekorator-classmethod/
 #       ● Позволяют работать с атрибутами класса.
 #       ● Принимают первым аргументом класс, а не экземпляр класса.
 #       ● Позволяют вызывать другие методы класса и выполнять другие операции, связанные с классом.
 
 # ___ EXAMPLE __________________________________________________
-class Person:
-    name = "static attribute - Person"      # Статический АТРИБУТ класса.  Смотри здесь:
-                                            # https://highload.tech/kak-sozdavat-klassy-v-python-so-znaniem-dela-razbiraem-na-primerah/
-    def __init__(self):
-        self.name = "NAME"                  # Атрибут name — динамический.
-        print(Person.name)
-
-    @classmethod                  # ВСТРОЕННЫЙ Декоратор метода -- преобразует обычный метод в метод класса в классе.  See here https://sky.pro/media/osnovy-raboty-s-classmethod-i-staticmethod-v-python/
-    def method(cls):              # Первым аргументом метода всегда является сам класс (обычно обозначается как cls), а не экземпляр класса (self).
-        print(f'\033[40;32mMethod\033[m', cls.name)     # cls.name - выведет имя класса.
-
-    def obj_method(self):
-        print('obj method', self.name)
-
-    @staticmethod
-    def static_method():
-        print('- Static method -')
-
-p = Person()        # Выводит статический АТРИБУТ класса. See link above.
-# p.method()
-Person.method()     # То же самое, что и строка выше.
-# Person.obj_method()
-Person.static_method()
+# class Person:
+#     name = f'\033[32mStatic attribute - Person\033[m'      # Статический АТРИБУТ класса.  Смотри здесь:
+#                                             # https://highload.tech/kak-sozdavat-klassy-v-python-so-znaniem-dela-razbiraem-na-primerah/
+#     def __init__(self):
+#         self.name = "NAME"                  # Атрибут name — динамический.
+#         print(Person.name)
+#
+#     # ВСТРОЕННЫЙ Декоратор метода -- преобразует обычный метод в метод класса в данном классе:
+#     @classmethod                  # See here https://sky.pro/media/osnovy-raboty-s-classmethod-i-staticmethod-v-python/
+#     def method(cls):              # Первым аргументом метода всегда является сам класс (обычно обозначается как cls),
+#                                   # а не экземпляр класса (self).
+#         print(f'\033[40;1;35m@classmethod: Method -->\033[m', cls.name)     # cls.name - выведет имя класса, точнее то,
+#                                                                             # что стоит в статическом АРГУМЕНТЕ.
+#
+#     def obj_method(self):
+#         print('obj method', self.name)
+#
+#     # Статический метод не получает НЕявный первый аргумент self класса: https://docs-python.ru/tutorial/vstroennye-funktsii-interpretatora-python/dekorator-staticmethod/
+#     # Проще говоря, декоратор @staticmethod превращает метод, определенный внутри класса, в обычную функцию,
+#     # которая не имеет доступа к экземпляру класса self, поэтому ее можно вызывать без создания экземпляра класса.
+#     # Следовательно, статический метод может быть вызван либо в классе C.f(), либо в экземпляре класса C().f().
+#     @staticmethod
+#     def static_method():
+#         print('- Static method -')
+#     # Метод  изменяет значение статического поля, относящегося ко всему классу. То есть, его задача —
+#     # выполнить действие, а не вернуть результат.
+#     """ __ NB! __"""  # Если метод выполняет только действие, возвращаемое значение не требуется.
+#     # +++ Еще здесь хороший вопрос: "Суть метода @classmethod, @staticmethod, @property".
+#     # https://ru.stackoverflow.com/questions/1389201/%D0%A1%D1%83%D1%82%D1%8C-%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B0-classmethod-staticmethod-property
+#
+#
+#
+# p = Person()        # Выводит статический АТРИБУТ класса. See link above.
+# # p.method()        # Можно применять к ЭКЗЕМПЛЯРУ класса, а можно и к самому классу, т.к. тогда вызывается @classmethod -->
+# Person.method()     # --> результат будет как после выполнения строки выше.
+# # Person.obj_method()
+# Person.static_method()
 # ___ END of Example __________________________________________________
 
-""" __________ Статические методы __________ """        # Смотри пример выше.
+""" __________ Статические методы __________ """        # Смотри пример выше /\.
+# +++ https://docs-python.ru/tutorial/vstroennye-funktsii-interpretatora-python/dekorator-staticmethod/
+# +++ Что такое статический метод в классах Python и зачем нужен:
+#     https://docs-python.ru/tutorial/klassy-jazyke-python/takoe-staticheskij-metod-klassah-zachem-nuzhen/
 #       ● определяются с помощью декоратора @staticmethod.
 #       ● Являются простыми функциями внутри класса
 #       ● Не принимают дополнительных аргументов (класс или экземпляр класса)
@@ -76,6 +93,18 @@ Person.static_method()
 # ___ EXAMPLE __________________________________________________
 
 # ___ END of Example __________________________________________________
+
+
+# FACIT, see here: https://stepik.org/lesson/794698/step/1?discussion=8506060&unit=797450
+# 1) методы класса - это методы, к которым используется декоратор @classmethod, они работают только с атрибутами
+#    самого класса через параметр cls. Они не имеют доступа к атрибутам экземпляра класса.
+# 2) методы экземпляра класса - это методы, которые работают с атрибутами экземпляра класса через параметр self.
+#    Также у них есть доступ к атрибутам класса, к которым следует обращаться также через self. В методах экземпляра класса можно вызывать статические методы и методы класса (через self).
+# 3) статические методы - это методы, к которым используется декоратор @staticmethod, у которых нет доступа к
+#    атрибутам экземпляра класса, формально могут "видеть" атрибуты класса через имя самого класса, но это не
+#    рекомендуется делать. Это методы, которые выполняют "сервисную" функцию для данного класса (например,
+#    всякие вычисления). У них нет параметра self и cls. Вызывать эти методы вне класса можно через имя класса.
+
 
 
 """ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%______________     Защищенные и     _____________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -211,7 +240,7 @@ Person.static_method()
 # class MySubClass(MyBaseClass):
 #     def __init__(self, x, y):
 #         # super().__init__(x)         # Здесь вызовется х * 3.
-#         super().__init__(x + 3)     # А здесь сначала к х прибавится 3, а только потом умножится на 3.
+#         super().__init__(x + 3)       # А здесь сначала к х прибавится 3, а только потом умножится на 3.
 #         self.y = y
 #
 #
@@ -248,49 +277,49 @@ Person.static_method()
 """ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%____________   Абстрактные классы   ___________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
 
 # — механизм для определения интерфейсов, которые должны быть реализованы в производных классах.
-# Абстрактные классы не могут быть инициализированы напрямую, служат ТОЛЬКО ДЛЯ наследования.
+#   Абстрактные классы не могут быть инициализированы напрямую, служат ТОЛЬКО ДЛЯ наследования.
 
 """ __________ Модуль abc (Abstract Base Classes) __________ """
 # — базовый класс ABC и декораторы для определения абстрактных методов и свойств.
 
-# # +++++++++++++++++++++++++++++++++++++
-# from abc import ABC, abstractmethod
-# # +++++++++++++++++++++++++++++++++++++
-#
-# # class BaseShape:
-# class BaseShape(ABC):
-#     @abstractmethod
-#     def area(self):
-#         pass
-#
-#     def area2(self):
-#         pass
-#
-# class Circle(BaseShape):
-#     def __init__(self, radius):
-#         self.radius = radius
-#         print("Inside Circle __init__")
-#
-#     def area(self):
-#         return 3.14 * self.radius ** 2
-#
-# class Rectangle(BaseShape):
-#     def __init__(self, length, width):
-#         self.length = length
-#         self.width = width
-#
-#     def area(self):
-#         return self.length * self.width
-#
-# circle = Circle(5)
-# rectangle = Rectangle(4, 6)
-#
-# print(f'circle.area():  {circle.area()}')
-# print(f'rectangle.area(): {rectangle.area()}')
-#
-# # print(BaseShape())
-# print(Circle(5))
-# print(Rectangle(3, 4))
+# +++++++++++++++++++++++++++++++++++++
+from abc import ABC, abstractmethod
+# +++++++++++++++++++++++++++++++++++++
+
+# class BaseShape:
+class BaseShape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    def area2(self):
+        pass
+
+class Circle(BaseShape):
+    def __init__(self, radius):
+        self.radius = radius
+        print("Inside Circle __init__")
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+class Rectangle(BaseShape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+circle = Circle(5)
+rectangle = Rectangle(4, 6)
+
+print(f'circle.area():  {circle.area()}')
+print(f'rectangle.area(): {rectangle.area()}')
+
+# print(BaseShape())
+print(Circle(5))
+print(Rectangle(3, 4))
 
 
 
