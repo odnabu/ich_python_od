@@ -31,15 +31,94 @@ print('.' * 130)
 
 part_1 = '______ Task 1 _____'
 """ ______  Task 1  ______________________________________________________________________________________________ """
+# Напишите программу, которая запрашивает у пользователя URL-адрес веб-страницы, использует библиотеку
+# BeautifulSoup для парсинга HTML и выводит список всех ссылок на странице.
+
+
+# What are some popular websites with minimal content? -->
+# https://www.quora.com/What-are-some-popular-websites-with-minimal-content
+
+# Сохраняю URL в переменную:
+# url = 'https://htwins.net/'      # Full URL:  url = 'https://htwins.net/scale2/'     # Выдало 406 на page.status_code.
+# requests/src/requests/status_codes.py --> https://github.com/psf/requests/blob/main/src/requests/status_codes.py
+
+# # +++++++++++++++++++++++++++++
+# from bs4 import BeautifulSoup
+# import requests
+# # +++++++++++++++++++++++++++++
+
+# def get_all_links(url):
 #
+#     list_all_links = []
+#     # Отправляю GET()-запрос на сайт и сохраняю полученное в переменную 'page':
+#     page = requests.get(url, headers={"User-Agent": "XY"})      # 406 --> The default Python User-Agent
+#     # 'python-requests/2.21.0' was being probably blocked
+#     # by the hosting company:
+#     # https://stackoverflow.com/questions/56101612/python-requests-http-response-406
+#     # Проверяю подключение:
+#     print(f'Status code: {page.status_code}')         # Если выдало 200, смотрю дальше.
+#     # Просмотрю все данные веб-страницы:
+#     # print(page.text)
+#     # print(f'\033[40;33m{'':=<90}\033[m')
+#     soup = BeautifulSoup(page.content, 'html.parser')
+#     links = soup.find_all('a')
+#     for link in links:
+#         list_all_links.append(link.get('href'))
+#     # print(link['href'])
+#     return list_all_links
+#
+#
+# # url= 'https://lovelycharts.com/'
+# url = 'https://htwins.net/scale2/'
+# print(get_all_links(url))
 
 
 part_2 = '______ Task 2 _____'
 """ ______  Task 2  ______________________________________________________________________________________________ """
-#
+# Напишите программу, которая запрашивает у пользователя URL-адрес веб-страницы и уровень заголовков, а затем
+# использует библиотеку Beautiful Soup для парсинга HTML и извлекает заголовки нужного уровня (теги h1, h2, h3 и т.д.)
+# с их текстом.
+
+# +++++++++++++++++++++++++++++
+from bs4 import BeautifulSoup
+import requests
+# +++++++++++++++++++++++++++++
+
+def get_headers(url: str, headers: tuple) -> str:
+    l = 45          # Length of the horizontal separator line.
+    page = requests.get(url)
+    result = []  # Список для хранения заголовков, если их нужно где-то дальше использовать.
+    if page.status_code != 200:
+        print(f'Status code: {page.status_code}')
+        page = requests.get(url, headers={"User-Agent": "XY"})
+    soup = BeautifulSoup(page.text, 'html.parser')
+    print(f'{'____ Result of parsing: ':_<{l}}')
+    for header in headers:
+        h = soup.find(header)
+        # print(f'{header}: {h.text}')
+        if h is None:
+            print(f'{header}: The header {header} was not found.')
+        elif h.text == '':
+            # raise AttributeError(f'{header}: The header {header} is empty.')
+            print(f'{header}: The header {header} is empty.')
+        else:
+            print(f'{header}: {h.text}')
+            result.append(f'{h.text.strip()}')  # Добавляю текст заголовка.
+    print(f'{'____ Text of headers were found: ':_<{l}}')
+    return ''.join(result)         # Возвращаю результат в виде строки для дальнейшего использования.
 
 
+# try:
+#     url = 'https://htwins.net/scale2/'       # __ NB! __  - Выводит статус 406, который говорит об ограниченном доступе к сайту.
+#     headers = 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+#     # print(get_headers(url, headers))
+#     get_headers(url, headers)
+# except AttributeError as e:
+#     print(e)
 
-
-
-
+url = 'https://htwins.net/scale2/'
+headers = 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+# get_headers(url, headers)
+headers = get_headers(url, headers)
+print(headers)
+print(headers + ' --> FOR CKECKING!')

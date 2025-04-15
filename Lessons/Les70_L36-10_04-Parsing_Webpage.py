@@ -71,8 +71,9 @@ print('.' * 120)
 # — это файл, содержащий предварительно скомпилированный код, который интерпретатор может выполнять непосредственно.
 
 """ __________ Пакеты __________ """
-# — это способ организации и группировки связанных модулей. Представляют собой директории, которые содержат модули и
-#   другие пакеты, а также файлы __init__.py, которые указывают интерпретатору, что директория является пакетом.
+# — это способ организации и группировки связанных модулей. Представляют собой директории, которые содержат:
+#       - модули и другие пакеты;
+#       - файлы __init__.py - указывают интерпретатору, что директория является пакетом.
 # В файле __init__.py дополнительно прописываются коды, например, подключение БД.
 
 # Video 70, 49:00  -->  NB!  -  modules / package  ??????????????????????
@@ -94,12 +95,16 @@ print('.' * 120)
 
 """ ___ Создание виртуального окружения ___ """         # See Video 70, 1:10:00
 # python -m venv myenv
-# # Активация виртуального окружения (в UNIX-системах)
-# source myenv/bin/activate
-# # Установка пакетов в виртуальное окружение
-# pip install package_name
-# # Деактивация виртуального окружения
-# deactivate
+#       ● Активация виртуального окружения (в UNIX-системах):
+#           source myenv/bin/activate
+#       ● Установка пакетов в виртуальное окружение:
+#           pip install package_name
+#       ● Деактивация виртуального окружения:
+#           deactivate
+
+
+
+""" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%_____________    Парсинг страниц    ____________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
 
 # ___ small Task __________________________________________________
 # Запустите в терминале команду:
@@ -108,72 +113,78 @@ print('.' * 120)
 # Поясните, что произошло.
 # ___ END small Task __________________________________________________
 
-
-
-""" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%_____________    Парсинг страниц    ____________%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% """
-
 """ __________ Библиотека Beautiful Soup __________ """
 # — мощный инструмент для парсинга и обработки HTML- и XML-документов. Позволяет удобно извлекать данные из веб-
 #   страниц, навигировать по структуре документа и выполнять различные манипуляции с содержимым.
+
+""" __ NB! __ """   # Detailed INFO here: https://www.crummy.com/software/BeautifulSoup/bs4/doc.ru/bs4ru.html#id11
 
 # # +++++++++++++++++++++++++++++++
 # import requests
 # from bs4 import BeautifulSoup
 # # +++++++++++++++++++++++++++++++
 # html = requests.get("https://example.com").text
-# # print(html)         # <html> - все что в таких скобках - ТЕГИ.
+# # print(html)           # <html> - все что в таких скобках - ТЕГИ.
 # # print(type(html))
 #
-# # Создание объекта Beautiful Soup из HTML-страницы
+# # ___ Создание объекта Beautiful Soup из HTML-страницы:
 # soup = BeautifulSoup(html, "html.parser")
-# # print(soup)
+# print(soup)
+# print(f'\033[40;33m{'':=<90}\033[m')
 # # print(type(soup))
-#
-# # Извлечение данных из тегов
-# # title = soup.title
-# # links = soup.find_all("a")
-# # print(title)
-# # print(title.text)
-# # print(links)
-#
-# # Навигация по структуре документа
-# # parent = soup.find("div").parent --- NO
+
+# ___ Извлечение данных из тегов:
+# title = soup.title
+# links = soup.find_all("a")
+# print(title)
+# print(title.text)
+# print(links)
+
+# ___ Навигация по структуре документа:
+# parent = soup.find("div").parent --- NO
 # div = soup.find("div")
 # print(div)
+# print(f'\033[40;36m{'':=<90}\033[m')
 # print(div.parent)
-#
-#
+
+
 # next_sibling = soup.find("div").next_sibling
-# # Манипуляции с содержимым
+# # ___ Манипуляции с содержимым:
 # new_tag = soup.new_tag("a", href="https://example.com")
 # soup.body.append(new_tag)
 
-""" __________ HTML __________ """
+""" __________ HTML __________   -   Hypertext Markup Language  """
 # — это стандартный язык разметки для создания веб-страниц. Определяет структуру и содержимое страницы с помощью
 #   тегов, атрибутов и текстового контента.
 
-""" ___ Извлечение данных из сырого HTML ___ """
+""" ___ Извлечение данных из сырого HTML --> .find(___) ___ """
 
 # ___ EXAMPLE __________________________________________________ Video 71, 17:00
-# +++++++++++++++++++++++++++++++
+# # +++++++++++++++++++++++++++++++
 # from bs4 import BeautifulSoup
-# +++++++++++++++++++++++++++++++
-# # Создание объекта Beautiful Soup из сырого HTML
-# html ="""
-# <html>
-# <body>
-# <h1>Заголовок</h1>
-# <p>Текст параграфа</p>
-# <a href="https://example.com">Ссылка</a>
-# </body>
-        # |===>
+# # +++++++++++++++++++++++++++++++
+#
+# # ___ Создание объекта Beautiful Soup из сырого HTML. Например, пусть есть страница такого вида:
+#         # html ="""
+#         # <html>
+#         # <body>
+#         # <h1>Заголовок</h1>
+#         # <p>Текст параграфа</p>
+#         # <a href="https://example.com">Ссылка</a>
+#         # </body>
+# #        |===>
 # soup = BeautifulSoup(html, "html.parser")
-# # Извлечение заголовка
+# # ___ Извлечение заголовка:
 # title = soup.find("h1").text
-# # Извлечение текста параграфа
+# print(title)
+# print(f'\033[40;36m{'':=<90}\033[m')
+# # ___ Извлечение текста параграфа:
 # paragraph = soup.find("p").text
-# # Извлечение ссылки
+# print(paragraph)
+# print(f'\033[40;34m{'':=<90}\033[m')
+# # ___ Извлечение ссылки:
 # link = soup.find("a")["href"]
+# print(link)
 # ___ END of Example __________________________________________________
 
 # ___ small Task __________________________________________________
@@ -196,27 +207,28 @@ print('.' * 120)
 from bs4 import BeautifulSoup
 # +++++++++++++++++++++++++++++
 
-# soup = BeautifulSoup('<a href="https://example.com" id="sds">Link</a><a href="https://example2.com" id="1sds">Link2</a>', 'html.parser')
-# links = soup.find_all('a')
-# for link in links:
-#     print(f'link --> {link}')
-#     print(f'link[\'href\'] --> {link['href']}')
-#     print(link['id'])
-# print()
-
-# Video 71, 50:00
-# .find_parent() — получение родительского элемента:
-soup = BeautifulSoup("<div><p>Text</p><p>Text2</p></div>", 'html.parser')
-p = soup.find('p')
-# parent = p.find_parent()
-parent = p.parent
-print(type(parent))
-print(parent.name)
-print(parent)
-child = parent.children         # sibling = geschwister --> братья и сестры родительского тега или предка.
-for ch in child:
-    print(ch)
+soup = BeautifulSoup('<a href="https://example.com" id="sds">Link</a>'
+                     '<a href="https://example2.com" id="1sds">Link2</a>', 'html.parser')
+links = soup.find_all('a')
+for link in links:
+    print(f'\033[40;34mlink -->\033[m {link}')
+    print(f'\033[40;36mlink[\'href\'] -->\033[m {link['href']}')
+    print(f'\033[40;33mlink[\'id\'] -->\033[m {link['id']}')
 print()
+
+
+""" ___ .find_parent() ___ """      #  — получение родительского элемента -- Video 71, 50:00:
+# soup = BeautifulSoup("<div><p>Text</p><p>Text2</p></div>", 'html.parser')
+# p = soup.find('p')
+# # parent = p.find_parent()
+# parent = p.parent
+# print(type(parent))
+# print(parent.name)
+# print(parent)
+# child = parent.children         # sibling = geschwister --> братья и сестры родительского тега или предка.
+# for ch in child:
+#     print(ch)
+# print()
 
 
 
