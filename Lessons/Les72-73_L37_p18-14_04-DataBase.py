@@ -271,7 +271,8 @@ print('=' * 80)
 print(f'{'___ QUERY: ':_<80}')
 query = '''SELECT * FROM users
             INNER JOIN sales ON users.id = sales.id
-            INNER JOIN product ON product.pid = sales.pid'''      # INNER JOIN - чтобы отсеять повторения.
+            INNER JOIN product ON product.pid = sales.pid
+           WHERE name = 'John' '''      # INNER JOIN - чтобы отсеять повторения.
 
 cursor.execute(query)
 for row in cursor.fetchall():

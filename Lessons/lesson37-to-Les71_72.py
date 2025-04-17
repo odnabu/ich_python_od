@@ -60,45 +60,73 @@ cursor.execute("SELECT * FROM sales")
 # emp = cursor.fetchone()
 # emp = cursor.fetchall()
 # print(emp)
-print("-----------------------")
+
+l = 70
+
+print(f'{'___ Content of table sales.ich_edit on ICH connection: ':_<{l}}')
 # emps = cursor.fetchmany(3)        # <<<<< !!! >>>>>
 emps = cursor.fetchall()
 # print(emps)
-for emp in emps:
-    print(emp)
+# for emp in emps:
+#     print(f'\t{emp}')
 print("-----------------------")
 cursor.reset()
 
 
 """ ____ Добавить ЗАГОЛОВКИ к выводу содержимого таблицы: ___ """
-l = 70
+
 print(f'{'___ Table INFO: ':_<{l}}')
 # cursor.execute("DESCRIBE employees")
 cursor.execute("DESCRIBE sales")
 table_info = cursor.fetchall()
-print(f'\t{table_info}')
+# print(f'\t{table_info}')
 
-print(f'{'___ Name of columns in list: ':_<{l}}')
+print(f'{'___ Name of columns in list - 1-st Variant: ':_<{l}}')
 table_names = [el[0] for el in table_info]
-print(f'\t{table_names}')
+# print(f'\t{table_names}')
 
-print(f'{'___ LIST of column names: ':_<{l}}')
+print(f'{'___ Name of columns in list - 2-nd Variant: ':_<{l}}')
 table_names_iter = map(lambda l: l[0], table_info)
 # for r in table_names_iter:      # separate in each row.
 #     print(f'\t{r}')
-print(f'\t{list(table_names_iter)}')    # LIST view.
+# print(f'\t{list(table_names_iter)}')    # LIST view.
 
-print(f'{'___ CONNECTING column names with values: ':_<{l}}')
+print(f'{'___ Column names & Values: ':_<{l}}')
+t = 5
+column_names_str = f'{'':{t}}'.join(table_names_iter)
+print(f'\t{column_names_str}')
+# print(f'\t{''.join(table_names)}')
+# print(*emps, sep='\n')
+# for emp in emps:
+#     print(f'\t{emp}')       # 	(1, 1, 6)
+for emp in emps:
+    e = f'{'':{t+2}}'.join(str(emp).strip('()').split(', '))
+    print(f'\t {e}')
+
+
+print(f'{'___ CONCATENATE column names with values: ':_<{l}}')
 pairs = zip(table_names, emps)
 # print(list(pairs))
+# print(emps)
+# print([item for item in emps])
+# # ____ It's look the best the Variant for dictionary:
+pairs_each_row = [dict(zip(table_names, item)) for item in emps]    # [{'sid': 1, 'pid': 1, 'id': 6}, ...]
+print(pairs_each_row)
+
 # for r in pairs:
 #     print(r)
-d = dict(pairs)       # То же самое, что и в 3-х строках выше, только в виде словаря.
-for k, v in d.items():
-    print(d)
+d = dict(pairs)       # То же самое, что и в 2-х строках выше, только в виде словаря.
+# for k, v in d.items():
+#     for item in v:
+        # print(d)
+
+
+
 # print(*emps, sep='\n')
 # emp = cursor.fetchall()
 # print()
+
+
 
 # # print(emp[0:2])
 #
